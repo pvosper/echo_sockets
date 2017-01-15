@@ -16,6 +16,10 @@ server and receive the reply, printing it to stdout.
 
 Finally, you'll do all of this so that it can be tested.
 
+Notes:
+
+    - Server will echo but not accumulate messages
+
 """
 
 import socket
@@ -98,7 +102,7 @@ def server(log_buffer=sys.stderr):
                     # the fact using the print statement here.  It will help in
                     # debugging problems.
 
-                    conn.sendall(data.encode('utf8'))
+                    conn.sendall(data)
 
                     print('sent "{0}"'.format(data.decode('utf8')))
 
@@ -114,7 +118,8 @@ def server(log_buffer=sys.stderr):
                 #       be hit. Use that opportunity to close the socket you
                 #       created above when a client connected.
 
-                sock.close()
+                # sock.close()
+                # If I close this here, it never gets re-established
 
                 print(
                     'echo complete, client connection closed', file=log_buffer
