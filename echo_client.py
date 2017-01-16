@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+
+"""
+Internet Programming in Python: Session 01
+
+Notes:
+
+    - Client accumulates and returns echoed messages
+
+"""
+
 import socket
 import sys
 
@@ -11,7 +22,10 @@ def client(msg, log_buffer=sys.stderr):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_IP)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-    print('connecting to {0} port {1}'.format(*server_address), file=log_buffer)
+    print(
+        'connecting to {0} port {1}'.format(*server_address),
+        file=log_buffer
+    )
 
     # xTODO: connect your socket to the server here.
 
@@ -20,6 +34,7 @@ def client(msg, log_buffer=sys.stderr):
     # you can use this variable to accumulate the entire message received back
     # from the server
 
+    # we want to return a string, not bytes
     received_message = ''
 
     # this try/finally block exists purely to allow us to close the socket
@@ -47,7 +62,10 @@ def client(msg, log_buffer=sys.stderr):
                 done = True
                 sock.close()
 
-            print('received "{0}"'.format(chunk.decode('utf8')), file=log_buffer)
+            print(
+                'received "{0}"'.format(chunk.decode('utf8')),
+                file=log_buffer
+            )
 
             received_message += chunk.decode("utf-8")
 

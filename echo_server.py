@@ -19,6 +19,8 @@ Finally, you'll do all of this so that it can be tested.
 Notes:
 
     - Server will echo but not accumulate messages
+    - KeyboardInterrupt works with control-c
+    - More comments than code :-P
 
 """
 
@@ -45,13 +47,13 @@ def server(log_buffer=sys.stderr):
     #       socket library documentation:
     #       http://docs.python.org/3/library/socket.html#example
 
-    # This is because the previous execution has left the socket in a
+    # "This is because the previous execution has left the socket in a
     #   TIME_WAIT state, and can’t be immediately reused.
     # There is a socket flag to set, in order to prevent this,
     #   socket.SO_REUSEADDR:
     # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    # s.bind((HOST, PORT))
+    # s.bind((HOST, PORT))"
 
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
