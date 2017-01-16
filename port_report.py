@@ -33,5 +33,9 @@ def port_report(lower = 21, upper = 80):
         # serv = 'open'
         try:
             serv = socket.getservbyport(port)
-        finally:
-            print("Port: {}\t{}".format(port, serv))
+        except:
+            continue
+        print("Port: {}\t{}".format(port, serv))
+
+if __name__ == '__main__':
+    port_report()
