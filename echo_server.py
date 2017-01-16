@@ -123,6 +123,18 @@ def server(log_buffer=sys.stderr):
                 # sock.close()
                 # If I close this here, it never gets re-established
 
+                # @christy
+                # Line 123 of echo_server - Looks like you were trying to
+                #   close the socket here, but you should close the connection
+                #   here (the conn variable).
+
+                # This doesn't stop the tests from passing, but the server
+                #   connection never closes.
+
+                # Otherwise, looks good!
+
+                conn.close()
+
                 print(
                     'echo complete, client connection closed', file=log_buffer
                 )
